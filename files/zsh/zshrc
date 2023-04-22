@@ -1,0 +1,62 @@
+# Environment variables
+export EDITOR=vim
+
+# Terminal multiplexer
+[ ! $TERM = "screen-256color" ] && tmux new-session
+
+# History configuration
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+
+# Aliases
+alias cat="bat"
+alias gad="git add"
+alias gco="git commit"
+alias gpu="git push"
+alias gpl="git pull"
+alias grm="git rm"
+alias gst="git status"
+alias ls="exa -a"
+alias t="tmux new-session"
+function te {
+    tmux new-session $EDITOR $1
+}
+
+# Prompt
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git svn
+zstyle ':vcs_info:git*' formats "- (%b) "
+precmd() {
+    vcs_info
+}
+setopt prompt_subst
+prompt='%B%F{blue}%2/%f ${vcs_info_msg_0_}%F{green}>%f%b '
+
+# Vi-style menu selection
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
+# Environment variables
+export BEMENU_OPTS="--tb=#073642 --tf=#839496 --nb=#073642 --nf=#839496 --hb=#839496 --hf=#073642 --fb=#073642 --ff=#839496 -l 5"
+export BAT_THEME="ansi"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#839496,bold"
+
+if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    . ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    . ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
