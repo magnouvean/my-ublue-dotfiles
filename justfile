@@ -33,8 +33,39 @@ set-shell:
 user-gnome-settings:
   #!/bin/bash
   xdg-settings set default-web-browser com.brave.Browser.desktop
-  jq ".startMinimized=true" $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json > $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json.tmp && mv $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json.tmp $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json
+  if ! [ -f $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json ]; then
+    echo "Opening Ferdium to generate config file"
+    flatpak run org.ferdium.Ferdium > /dev/null 2>&1 &
+    while ! [ -f $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json ]; do sleep 1; done
+    sleep 5
+    jq ".startMinimized=true" $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json > $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json.tmp && mv $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json.tmp $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json
+    pkill ferdium
+  fi
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "'gtk-launch dev-codium.desktop'"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command "'gtk-launch org.ferdium.Ferdium.desktop'"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command "'gtk-launch net.lutris.Lutris.desktop'"
   gsettings set org.gnome.shell favorite-apps "['com.brave.Browser.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop']"
+
+setup-dev-python:
+  #!/bin/bash
+  yes | distrobox create --name dev --home $HOME/.local/share/distrobox/home/dev --image fedora:38
+  distrobox enter dev -- "sudo dnf install -y ipython python-unversioned-command python3 python3-pip python3-tkinter"
+  distrobox enter dev -- "pip install black jupyter matplotlib mypy numpy pandas pytest scikit-learn scipy seaborn"
+
+setup-dev-R:
+  #!/bin/bash
+  yes | distrobox create --name dev --home $HOME/.local/share/distrobox/home/dev --image fedora:38
+  distrobox enter dev -- "sudo dnf -y copr enable iucar/cran"
+  distrobox enter dev -- "sudo dnf install -y R R-CoprManager"
+  distrobox enter dev -- "R -e 'install.packages(c(\"MASS\", \"RSNNS\", \"gam\", \"glmnet\", \"languageserver\", \"leaps\", \"nnet\", \"testthat\", \"tidyverse\"), repos=\"https://cloud.r-project.org\")'"
+
+setup-dev-julia:
+  #!/bin/bash
+  yes | distrobox create --name dev --home $HOME/.local/share/distrobox/home/dev --image fedora:38
+  distrobox enter dev -- "sudo dnf install -y julia"
+  distrobox enter dev -- "julia -e 'using Pkg; Pkg.add.([\"Distributions\", \"Plots\"])'"
+
+setup-dev-latex:
+  #!/bin/bash
+  yes | distrobox create --name dev --home $HOME/.local/share/distrobox/home/dev --image fedora:38
+  distrobox enter dev -- "sudo dnf install -y pandoc texlive-scheme-medium"
