@@ -59,8 +59,9 @@ setup-dev-R:
 
 setup-dev-julia:
   #!/bin/bash
-  distrobox enter dev -- "if [ -f ~/.juliaup/bin/juliaup ]; then juliaup update; else curl -fsSL https://install.julialang.org | sh -s -- --yes; fi"
-  distrobox enter dev -- "julia -e 'using Pkg; Pkg.add.([\"Distributions\", \"Plots\"])'"
+  echo '[ -f $HOME/.juliaup/bin/juliaup ] && juliaup update' | distrobox enter dev
+  echo '[ -f $HOME/.juliaup/bin/juliaup ] || curl -fsSL https://install.julialang.org | sh -s -- --yes' | distrobox enter dev
+  echo "julia -e 'using Pkg; Pkg.add.([\"Distributions\", \"Plots\"])'" | distrobox enter dev
 
 setup-dev-latex:
   #!/bin/bash
