@@ -48,24 +48,20 @@ user-gnome-settings:
 
 setup-dev-python:
   #!/bin/bash
-  yes | distrobox create --name dev --home $HOME/.local/share/distrobox/home/dev --image fedora:38
   distrobox enter dev -- "sudo dnf install -y ipython python-unversioned-command python3 python3-pip python3-tkinter"
   distrobox enter dev -- "pip install black jupyter matplotlib mypy numpy pandas pytest scikit-learn scipy seaborn"
 
 setup-dev-R:
   #!/bin/bash
-  yes | distrobox create --name dev --home $HOME/.local/share/distrobox/home/dev --image fedora:38
   distrobox enter dev -- "sudo dnf -y copr enable iucar/cran"
   distrobox enter dev -- "sudo dnf install -y R R-CoprManager"
   distrobox enter dev -- "R -e 'install.packages(c(\"MASS\", \"RSNNS\", \"gam\", \"glmnet\", \"languageserver\", \"leaps\", \"nnet\", \"testthat\", \"tidyverse\"), repos=\"https://cloud.r-project.org\")'"
 
 setup-dev-julia:
   #!/bin/bash
-  yes | distrobox create --name dev --home $HOME/.local/share/distrobox/home/dev --image fedora:38
   distrobox enter dev -- "sudo dnf install -y julia"
   distrobox enter dev -- "julia -e 'using Pkg; Pkg.add.([\"Distributions\", \"Plots\"])'"
 
 setup-dev-latex:
   #!/bin/bash
-  yes | distrobox create --name dev --home $HOME/.local/share/distrobox/home/dev --image fedora:38
   distrobox enter dev -- "sudo dnf install -y pandoc texlive-scheme-medium"
