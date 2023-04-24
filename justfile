@@ -59,7 +59,7 @@ setup-dev-R:
 
 setup-dev-julia:
   #!/bin/bash
-  distrobox enter dev -- "sudo dnf install -y julia"
+  distrobox enter dev -- "if [ -f ~/.juliaup/bin/juliaup ]; then juliaup update; else curl -fsSL https://install.julialang.org | sh -s -- --yes; fi"
   distrobox enter dev -- "julia -e 'using Pkg; Pkg.add.([\"Distributions\", \"Plots\"])'"
 
 setup-dev-latex:
