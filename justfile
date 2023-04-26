@@ -55,7 +55,7 @@ setup-dev-R:
   #!/bin/bash
   distrobox enter dev -- "sudo dnf -y copr enable iucar/cran"
   distrobox enter dev -- "sudo dnf install -y R R-CoprManager"
-  distrobox enter dev -- "R -e 'install.packages(c(\"MASS\", \"RSNNS\", \"gam\", \"glmnet\", \"languageserver\", \"leaps\", \"nnet\", \"testthat\", \"tidyverse\"), repos=\"https://cloud.r-project.org\")'"
+  distrobox enter dev -- "R -e 'install.packages(c(\"MASS\", \"RSNNS\", \"gam\", \"glmnet\", \"languageserver\", \"leaps\", \"nnet\", \"testthat\", \"tidyverse\", \"tree\"), repos=\"https://cloud.r-project.org\")'"
 
 setup-dev-julia:
   #!/bin/bash
