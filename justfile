@@ -59,9 +59,9 @@ setup-dev-R:
 
 setup-dev-julia:
   #!/bin/bash
-  echo '[ -f $HOME/.juliaup/bin/juliaup ] && juliaup update' | distrobox enter dev
+  echo '[ -f $HOME/.juliaup/bin/juliaup ] && $HOME/.juliaup/bin/juliaup update' | distrobox enter dev
   echo '[ -f $HOME/.juliaup/bin/juliaup ] || curl -fsSL https://install.julialang.org | sh -s -- --yes' | distrobox enter dev
-  echo "julia -e 'using Pkg; Pkg.add.([\"Distributions\", \"Plots\", \"LanguageServer\"])'" | distrobox enter dev
+  echo '$HOME/.juliaup/bin/julia -e "using Pkg; Pkg.add.([\"Distributions\", \"Plots\", \"LanguageServer\"])"' | distrobox enter dev
 
 setup-dev-latex:
   #!/bin/bash
