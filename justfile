@@ -41,7 +41,7 @@ user-gnome-settings:
     jq ".startMinimized=true" $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json > $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json.tmp && mv $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json.tmp $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json
     pkill ferdium
   fi
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "'gtk-launch dev-codium.desktop'"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "'gtk-launch dev-emacs.desktop'"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command "'gtk-launch org.ferdium.Ferdium.desktop'"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command "'gtk-launch net.lutris.Lutris.desktop'"
   gsettings set org.gnome.shell favorite-apps "['com.brave.Browser.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop']"
@@ -49,7 +49,7 @@ user-gnome-settings:
 setup-dev-python:
   #!/bin/bash
   distrobox enter dev -- "sudo dnf install -y ipython python-unversioned-command python3 python3-pip python3-tkinter"
-  distrobox enter dev -- "pip install black jupyter matplotlib mypy numpy pandas pytest scikit-learn scipy seaborn"
+  distrobox enter dev -- "pip install black jupyter matplotlib mypy numpy pandas pytest scikit-learn scipy seaborn python-lsp-server[all]"
 
 setup-dev-R:
   #!/bin/bash
@@ -61,7 +61,7 @@ setup-dev-julia:
   #!/bin/bash
   echo '[ -f $HOME/.juliaup/bin/juliaup ] && juliaup update' | distrobox enter dev
   echo '[ -f $HOME/.juliaup/bin/juliaup ] || curl -fsSL https://install.julialang.org | sh -s -- --yes' | distrobox enter dev
-  echo "julia -e 'using Pkg; Pkg.add.([\"Distributions\", \"Plots\"])'" | distrobox enter dev
+  echo "julia -e 'using Pkg; Pkg.add.([\"Distributions\", \"Plots\", \"LanguageServer\"])'" | distrobox enter dev
 
 setup-dev-latex:
   #!/bin/bash
