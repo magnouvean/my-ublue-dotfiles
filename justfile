@@ -65,4 +65,5 @@ setup-dev-julia:
 
 setup-dev-latex:
   #!/bin/bash
-  distrobox enter dev -- "sudo dnf install -y pandoc texlive-scheme-medium"
+  distrobox enter dev -- "sudo dnf -y copr enable nyk/tools"
+  distrobox enter dev -- "sudo dnf install -y pandoc texlive-scheme-medium texlab"
