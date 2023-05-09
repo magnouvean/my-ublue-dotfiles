@@ -66,5 +66,8 @@ setup-dev-julia:
 
 setup-dev-latex:
   #!/bin/bash
-  distrobox enter dev -- "sudo dnf -y copr enable nyk/tools"
-  distrobox enter dev -- "sudo dnf install -y pandoc texlive-scheme-medium texlab"
+  distrobox enter dev -- "sudo dnf install -y pandoc texlive-scheme-medium texlive-capt-of texlive-digestif"
+  echo 'mkdir -p ~/.local/bin' | distrobox enter dev
+  echo '[ -f ~/.local/bin/digestif ] || wget "https://raw.githubusercontent.com/astoff/digestif/master/scripts/digestif" -O ~/.local/bin/digestif' | distrobox enter dev
+  echo 'chmod +x ~/.local/bin/digestif' | distrobox enter dev
+  echo 'digestif -g' | distrobox enter dev
