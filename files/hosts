@@ -3,6 +3,7 @@
 
 
 0.0.0.0 4chan.org
+0.0.0.0 4plebs.org
 0.0.0.0 777score.com
 0.0.0.0 90min.com
 0.0.0.0 9gag.com
@@ -12,6 +13,7 @@
 0.0.0.0 ao.no
 0.0.0.0 aol.co.uk
 0.0.0.0 api.invidious.io
+0.0.0.0 archive.4plebs.org
 0.0.0.0 archive.is
 0.0.0.0 archive.ph
 0.0.0.0 archive.today
@@ -77,6 +79,7 @@
 0.0.0.0 huffpost.com
 0.0.0.0 ifunny.co
 0.0.0.0 ign.com
+0.0.0.0 independent.co.uk
 0.0.0.0 indiewire.com
 0.0.0.0 indy100.com
 0.0.0.0 inews.co.uk
@@ -323,6 +326,7 @@
 0.0.0.0 wired.com
 0.0.0.0 wsj.com
 0.0.0.0 wwd.com
+0.0.0.0 www.4plebs.org
 0.0.0.0 www.777score.com
 0.0.0.0 www.90min.com
 0.0.0.0 www.9gag.com
@@ -385,6 +389,7 @@
 0.0.0.0 www.huffpost.com
 0.0.0.0 www.ifunny.co
 0.0.0.0 www.ign.com
+0.0.0.0 www.independent.co.uk
 0.0.0.0 www.indiewire.com
 0.0.0.0 www.indy100.com
 0.0.0.0 www.inews.co.uk

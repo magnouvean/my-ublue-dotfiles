@@ -6,8 +6,9 @@ cwd=$(dirname $0)
 # System
 just -f /etc/justfile update
 just -f /etc/justfile setup-flatpaks
-#just -f /etc/justfile setup-dev-vscodium
-just -f /etc/justfile setup-dev-doom
+# just -f /etc/justfile setup-dev-vscodium
+# just -f /etc/justfile setup-dev-doom
+just -f /etc/justfile setup-dev-spacemacs
 just -f /etc/justfile setup-gnome-settings
 just -f /etc/justfile enable-services
 
