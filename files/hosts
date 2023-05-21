@@ -21,6 +21,7 @@
 0.0.0.0 azscore.com
 0.0.0.0 bbc.co.uk
 0.0.0.0 bbc.com
+0.0.0.0 beehaw.org
 0.0.0.0 besthackernews.herokuapp.com
 0.0.0.0 bleacherreport.com
 0.0.0.0 bloomberg.com
@@ -56,6 +57,8 @@
 0.0.0.0 eu.usatoday.com
 0.0.0.0 euronews.com
 0.0.0.0 eurosport.co.uk
+0.0.0.0 feddit.de
+0.0.0.0 feddit.it
 0.0.0.0 find.4chan.org
 0.0.0.0 flashscore.com
 0.0.0.0 flashscore.mobi
@@ -122,6 +125,10 @@
 0.0.0.0 kotaku.com
 0.0.0.0 l.opnxng.com
 0.0.0.0 leddit.xyz
+0.0.0.0 lemmy.ca
+0.0.0.0 lemmy.eus
+0.0.0.0 lemmy.ml
+0.0.0.0 lemmygrad.ml
 0.0.0.0 libreddit.autarkic.org
 0.0.0.0 libreddit.bus-hit.me
 0.0.0.0 libreddit.crewz.me
@@ -279,9 +286,11 @@
 0.0.0.0 samaaenglish.tv
 0.0.0.0 si.com
 0.0.0.0 skysports.com
+0.0.0.0 slrpnk.net
 0.0.0.0 soccer24.com
 0.0.0.0 soccerbase.com
 0.0.0.0 sofascore.com
+0.0.0.0 sopuli.xyz
 0.0.0.0 sportbible.com
 0.0.0.0 sportinglife.com
 0.0.0.0 sports.ndtv.com
@@ -351,6 +360,7 @@
 0.0.0.0 www.azscore.com
 0.0.0.0 www.bbc.co.uk
 0.0.0.0 www.bbc.com
+0.0.0.0 www.beehaw.org
 0.0.0.0 www.bleacherreport.com
 0.0.0.0 www.bloomberg.com
 0.0.0.0 www.bob.fr.to
@@ -379,6 +389,8 @@
 0.0.0.0 www.espn.com
 0.0.0.0 www.euronews.com
 0.0.0.0 www.eurosport.co.uk
+0.0.0.0 www.feddit.de
+0.0.0.0 www.feddit.it
 0.0.0.0 www.flashscore.com
 0.0.0.0 www.flashscore.mobi
 0.0.0.0 www.football.london
@@ -427,6 +439,10 @@
 0.0.0.0 www.kotaku.com
 0.0.0.0 www.l.opnxng.com
 0.0.0.0 www.leddit.xyz
+0.0.0.0 www.lemmy.ca
+0.0.0.0 www.lemmy.eus
+0.0.0.0 www.lemmy.ml
+0.0.0.0 www.lemmygrad.ml
 0.0.0.0 www.libreddit.autarkic.org
 0.0.0.0 www.libreddit.bus-hit.me
 0.0.0.0 www.libreddit.crewz.me
@@ -527,9 +543,11 @@
 0.0.0.0 www.samaaenglish.tv
 0.0.0.0 www.si.com
 0.0.0.0 www.skysports.com
+0.0.0.0 www.slrpnk.net
 0.0.0.0 www.soccer24.com
 0.0.0.0 www.soccerbase.com
 0.0.0.0 www.sofascore.com
+0.0.0.0 www.sopuli.xyz
 0.0.0.0 www.sportbible.com
 0.0.0.0 www.sportinglife.com
 0.0.0.0 www.sportskeeda.com
