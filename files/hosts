@@ -40,6 +40,7 @@
 0.0.0.0 dailydot.com
 0.0.0.0 dailymail.co.uk
 0.0.0.0 dailymail.com
+0.0.0.0 dailymotion.com
 0.0.0.0 dailystar.co.uk
 0.0.0.0 dailywire.com
 0.0.0.0 de.leddit.xyz
@@ -174,6 +175,11 @@
 0.0.0.0 m.youtube.com
 0.0.0.0 manchestereveningnews.co.uk
 0.0.0.0 marca.com
+0.0.0.0 mas.to
+0.0.0.0 mastodon.online
+0.0.0.0 mastodon.social
+0.0.0.0 mastodon.world
+0.0.0.0 mastodon.xyz
 0.0.0.0 mediamatters.org
 0.0.0.0 metro.co.uk
 0.0.0.0 mirror.co.uk
@@ -275,6 +281,7 @@
 0.0.0.0 skysports.com
 0.0.0.0 soccer24.com
 0.0.0.0 soccerbase.com
+0.0.0.0 sofascore.com
 0.0.0.0 sportbible.com
 0.0.0.0 sportinglife.com
 0.0.0.0 sports.ndtv.com
@@ -318,6 +325,7 @@
 0.0.0.0 vg.no
 0.0.0.0 vglive.no
 0.0.0.0 vgtv.no
+0.0.0.0 vimeo.com
 0.0.0.0 voetbalprimeur.nl
 0.0.0.0 voetbalzone.nl
 0.0.0.0 washingtonpost.com
@@ -359,6 +367,7 @@
 0.0.0.0 www.dailydot.com
 0.0.0.0 www.dailymail.co.uk
 0.0.0.0 www.dailymail.com
+0.0.0.0 www.dailymotion.com
 0.0.0.0 www.dailystar.co.uk
 0.0.0.0 www.dailywire.com
 0.0.0.0 www.de.leddit.xyz
@@ -467,6 +476,11 @@
 0.0.0.0 www.lr.vern.cc
 0.0.0.0 www.manchestereveningnews.co.uk
 0.0.0.0 www.marca.com
+0.0.0.0 www.mas.to
+0.0.0.0 www.mastodon.online
+0.0.0.0 www.mastodon.social
+0.0.0.0 www.mastodon.world
+0.0.0.0 www.mastodon.xyz
 0.0.0.0 www.mediamatters.org
 0.0.0.0 www.metro.co.uk
 0.0.0.0 www.mirror.co.uk
@@ -515,6 +529,7 @@
 0.0.0.0 www.skysports.com
 0.0.0.0 www.soccer24.com
 0.0.0.0 www.soccerbase.com
+0.0.0.0 www.sofascore.com
 0.0.0.0 www.sportbible.com
 0.0.0.0 www.sportinglife.com
 0.0.0.0 www.sportskeeda.com
@@ -551,6 +566,7 @@
 0.0.0.0 www.vg.no
 0.0.0.0 www.vglive.no
 0.0.0.0 www.vgtv.no
+0.0.0.0 www.vimeo.com
 0.0.0.0 www.voetbalprimeur.nl
 0.0.0.0 www.voetbalzone.nl
 0.0.0.0 www.washingtonpost.com
