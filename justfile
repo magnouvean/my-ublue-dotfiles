@@ -41,21 +41,22 @@ user-gnome-settings:
     jq ".startMinimized=true" $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json > $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json.tmp && mv $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json.tmp $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json
     pkill ferdium
   fi
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "'gtk-launch dev-emacs.desktop'"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "'gtk-launch dev-emacsclient.desktop'"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command "'gtk-launch org.ferdium.Ferdium.desktop'"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command "'gtk-launch net.lutris.Lutris.desktop'"
   gsettings set org.gnome.shell favorite-apps "['com.brave.Browser.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop']"
 
 setup-dev-python:
   #!/bin/bash
-  distrobox enter dev -- "sudo dnf install -y ipython python-unversioned-command python3 python3-pip python3-tkinter"
+  distrobox enter dev -- "sudo pacman -S --noconfirm --needed ipython python python-pip tk"
   distrobox enter dev -- "pip install black jupyter matplotlib mypy numpy pandas pytest scikit-learn scipy seaborn python-lsp-server[all]"
 
 setup-dev-R:
   #!/bin/bash
-  distrobox enter dev -- "sudo dnf -y copr enable iucar/cran"
-  distrobox enter dev -- "sudo dnf install -y R R-CoprManager"
-  distrobox enter dev -- "R -e 'install.packages(c(\"MASS\", \"RSNNS\", \"gam\", \"glmnet\", \"languageserver\", \"leaps\", \"nnet\", \"testthat\", \"tidyverse\", \"tree\"), repos=\"https://cloud.r-project.org\")'"
+  echo "mkdir -p ~/R/lib" | distrobox enter dev
+  echo 'echo "R_LIBS_USER=~/R/lib" > ~/.Renviron' | distrobox enter dev
+  distrobox enter dev -- "sudo pacman -S --noconfirm --needed r r-nnet r-mass"
+  echo "R -e 'install.packages(c(\"RSNNS\", \"gam\", \"glmnet\", \"languageserver\", \"leaps\", \"testthat\", \"tidyverse\", \"tree\"), repos=\"https://cloud.r-project.org\")'" | distrobox enter dev
 
 setup-dev-julia:
   #!/bin/bash
@@ -66,7 +67,7 @@ setup-dev-julia:
 
 setup-dev-latex:
   #!/bin/bash
-  distrobox enter dev -- "sudo dnf install -y pandoc texlive-scheme-medium texlive-capt-of texlive-digestif"
+  distrobox enter dev -- "sudo pacman -S --noconfirm --needed pandoc texlive-most"
   echo 'mkdir -p ~/.local/bin' | distrobox enter dev
   echo '[ -f ~/.local/bin/digestif ] || wget "https://raw.githubusercontent.com/astoff/digestif/master/scripts/digestif" -O ~/.local/bin/digestif' | distrobox enter dev
   echo 'chmod +x ~/.local/bin/digestif' | distrobox enter dev

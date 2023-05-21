@@ -1,9 +1,56 @@
 {
-    "workbench.colorTheme": "Tokyo Night",
+    "workbench.colorTheme": "Visual Studio Dark",
     "editor.fontSize": 18,
     "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace",
     "editor.formatOnSave": true,
     "redhat.telemetry.enabled": false,
     "git.requireGitUserConfig": false,
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "vim.easymotion": true,
+    "vim.useSystemClipboard": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<space>"
+            ],
+            "commands": [
+                "vspacecode.space"
+            ]
+        },
+        {
+            "before": [
+                ","
+            ],
+            "commands": [
+                "vspacecode.space",
+                {
+                    "command": "whichkey.triggerKey",
+                    "args": "m"
+                }
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<space>"
+            ],
+            "commands": [
+                "vspacecode.space"
+            ]
+        },
+        {
+            "before": [
+                ","
+            ],
+            "commands": [
+                "vspacecode.space",
+                {
+                    "command": "whichkey.triggerKey",
+                    "args": "m"
+                }
+            ]
+        }
+    ],
+    "workbench.startupEditor": "none"
 }

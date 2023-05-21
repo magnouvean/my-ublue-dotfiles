@@ -1,84 +1,154 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
     {
-        "key": "ctrl+a k",
-        "command": "workbench.action.focusAboveGroup"
+        "key": "space",
+        "command": "vspacecode.space",
+        "when": "activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus"
     },
     {
-        "key": "ctrl+k ctrl+up",
-        "command": "-workbench.action.focusAboveGroup"
+        "key": "space",
+        "command": "vspacecode.space",
+        "when": "sideBarFocus && !inputFocus && !whichkeyActive"
     },
     {
-        "key": "ctrl+a j",
-        "command": "workbench.action.focusBelowGroup"
+        "key": "tab",
+        "command": "extension.vim_tab",
+        "when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'"
     },
     {
-        "key": "ctrl+k ctrl+down",
-        "command": "-workbench.action.focusBelowGroup"
+        "key": "tab",
+        "command": "-extension.vim_tab",
+        "when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'"
     },
     {
-        "key": "ctrl+a h",
-        "command": "workbench.action.focusLeftGroup"
+        "key": "x",
+        "command": "magit.discard-at-point",
+        "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
     },
     {
-        "key": "ctrl+k ctrl+left",
-        "command": "-workbench.action.focusLeftGroup"
+        "key": "k",
+        "command": "-magit.discard-at-point"
     },
     {
-        "key": "ctrl+a l",
-        "command": "workbench.action.focusRightGroup"
+        "key": "-",
+        "command": "magit.reverse-at-point",
+        "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
     },
     {
-        "key": "ctrl+k ctrl+right",
-        "command": "-workbench.action.focusRightGroup"
+        "key": "v",
+        "command": "-magit.reverse-at-point"
     },
     {
-        "key": "ctrl+a shift+l",
-        "command": "workbench.action.splitEditorRight"
+        "key": "shift+-",
+        "command": "magit.reverting",
+        "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
     },
     {
-        "key": "ctrl+a shift+h",
-        "command": "workbench.action.splitEditorLeft"
+        "key": "shift+v",
+        "command": "-magit.reverting"
     },
     {
-        "key": "ctrl+a shift+k",
-        "command": "workbench.action.splitEditorToAboveGroup"
+        "key": "shift+o",
+        "command": "magit.resetting",
+        "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
     },
     {
-        "key": "ctrl+a shift+j",
-        "command": "workbench.action.splitEditorToBelowGroup"
+        "key": "shift+x",
+        "command": "-magit.resetting"
     },
     {
-        "key": "ctrl+t",
-        "command": "workbench.action.files.newUntitledFile"
+        "key": "x",
+        "command": "-magit.reset-mixed"
     },
     {
-        "key": "ctrl+n",
-        "command": "-workbench.action.files.newUntitledFile"
+        "key": "ctrl+u x",
+        "command": "-magit.reset-hard"
     },
     {
-        "key": "ctrl+shift+t",
-        "command": "workbench.action.terminal.new"
+        "key": "y",
+        "command": "-magit.show-refs"
+    },
+    {
+        "key": "y",
+        "command": "vspacecode.showMagitRefMenu",
+        "when": "editorTextFocus && editorLangId == 'magit' && vim.mode == 'Normal'"
     },
     {
         "key": "ctrl+j",
-        "command": "workbench.action.nextEditor"
-    },
-    {
-        "key": "ctrl+pagedown",
-        "command": "-workbench.action.nextEditor"
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "inQuickOpen"
     },
     {
         "key": "ctrl+k",
-        "command": "workbench.action.previousEditor"
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "when": "inQuickOpen"
     },
     {
-        "key": "ctrl+pageup",
-        "command": "-workbench.action.previousEditor"
+        "key": "ctrl+j",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
     },
     {
-        "key": "ctrl+w",
-        "command": "-extension.vim_ctrl+w",
-        "when": "editorTextFocus && vim.active && vim.use<C-w> && !inDebugRepl"
+        "key": "ctrl+k",
+        "command": "selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "acceptSelectedSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "showNextParameterHint",
+        "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "showPrevParameterHint",
+        "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "selectNextCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "selectPrevCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "acceptSelectedCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "file-browser.stepOut",
+        "when": "inFileBrowser"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "file-browser.stepIn",
+        "when": "inFileBrowser"
+    },
+    {
+        "key": "alt+x",
+        "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+shift+p",
+        "command": "-workbench.action.showCommands"
+    },
+    {
+        "key": "alt+x",
+        "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+shift+p",
+        "command": "-workbench.action.quickOpenNavigatePreviousInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
     }
 ]
