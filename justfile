@@ -48,8 +48,8 @@ user-gnome-settings:
 
 setup-dev-python:
   #!/bin/bash
-  distrobox enter dev -- "sudo pacman -S --noconfirm --needed ipython python python-pip tk"
-  distrobox enter dev -- "pip install black jupyter matplotlib mypy numpy pandas pytest scikit-learn scipy seaborn python-lsp-server[all]"
+  distrobox enter dev -- "sudo pacman -S --noconfirm --needed ipython python python-pip tk python-lsp-server"
+  distrobox enter dev -- "pip install black jupyter matplotlib mypy numpy pandas pytest scikit-learn scipy seaborn isort rope pyflakes mccabe pycodestyle pydocstyle"
 
 setup-dev-R:
   #!/bin/bash
