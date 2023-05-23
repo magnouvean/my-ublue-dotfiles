@@ -60,3 +60,16 @@ if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
 elif [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     . ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
+
+ec() {
+    if [ -d ~/.local/share/distrobox/home/dev/.spacemacs.d ]; then
+        echo "[ -f ~/.emacs ] && rm ~/.emacs" | distrobox enter dev
+    elif ! [ -d ~/.local/share/distrobox/home/dev/.config/doom ]; then
+        echo "Emacs not found. Please install in dev container first" && exit
+    fi
+    if [ "$1" = "" ]; then
+        distrobox enter dev -- emacsclient -nw -e '(spacemacs/home)'
+    else
+        distrobox enter dev -- emacsclient -nw $1
+    fi
+}
