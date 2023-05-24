@@ -68,8 +68,10 @@ ec() {
         echo "Emacs not found. Please install in dev container first" && exit
     fi
     if [ "$1" = "" ]; then
-        distrobox enter dev -- emacsclient -nw -e '(spacemacs/home)'
+        distrobox enter dev -- emacsclient --alternate-editor= -nw -e '(spacemacs/home)'
     else
-        distrobox enter dev -- emacsclient -nw $1
+        distrobox enter dev -- emacsclient --alternate-editor= -nw $1
     fi
 }
+
+distrobox list | grep -q "dev" && distrobox enter dev -- "which emacsclient &> /dev/null" && export GIT_EDITOR="distrobox enter dev -- emacsclient --alternate-editor= -nw"
