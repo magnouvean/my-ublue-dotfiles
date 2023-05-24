@@ -6,7 +6,7 @@ cwd=$(dirname $0)
 if [ "$1" = "" ]; then
 
     # System
-    just -f /etc/justfile update
+    # just -f /etc/justfile update
     just -f /etc/justfile setup-flatpaks
     # just -f /etc/justfile setup-dev-vscodium
     just -f /etc/justfile setup-dev-doom
