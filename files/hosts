@@ -23,6 +23,7 @@
 0.0.0.0 bbc.com
 0.0.0.0 beehaw.org
 0.0.0.0 besthackernews.herokuapp.com
+0.0.0.0 bitchute.com
 0.0.0.0 bleacherreport.com
 0.0.0.0 bloomberg.com
 0.0.0.0 boards.4chan.org
@@ -76,6 +77,7 @@
 0.0.0.0 funnyjunk.com
 0.0.0.0 futbin.com
 0.0.0.0 futhead.com
+0.0.0.0 gab.com
 0.0.0.0 global.espn.com
 0.0.0.0 goal.com
 0.0.0.0 hacker-news.news
@@ -269,6 +271,7 @@
 0.0.0.0 r.walkx.org
 0.0.0.0 rareddit.com
 0.0.0.0 rd.jae.su
+0.0.0.0 rdrama.net
 0.0.0.0 readytogo.net
 0.0.0.0 reddi.tk
 0.0.0.0 reddit.artemislena.eu
@@ -322,9 +325,11 @@
 0.0.0.0 tiktok.com
 0.0.0.0 tmz.com
 0.0.0.0 transfermarkt.us
+0.0.0.0 tv.gab.com
 0.0.0.0 tv.vg.no
 0.0.0.0 tv2.no
 0.0.0.0 twitch.tv
+0.0.0.0 twitchy.com
 0.0.0.0 twitter.com
 0.0.0.0 uk.soccerway.com
 0.0.0.0 uk.sports.yahoo.com
@@ -365,6 +370,7 @@
 0.0.0.0 www.bbc.co.uk
 0.0.0.0 www.bbc.com
 0.0.0.0 www.beehaw.org
+0.0.0.0 www.bitchute.com
 0.0.0.0 www.bleacherreport.com
 0.0.0.0 www.bloomberg.com
 0.0.0.0 www.bob.fr.to
@@ -411,6 +417,7 @@
 0.0.0.0 www.funnyjunk.com
 0.0.0.0 www.futbin.com
 0.0.0.0 www.futhead.com
+0.0.0.0 www.gab.com
 0.0.0.0 www.goal.com
 0.0.0.0 www.hacker-news.news
 0.0.0.0 www.hitc.com
@@ -531,6 +538,7 @@
 0.0.0.0 www.r.walkx.org
 0.0.0.0 www.rareddit.com
 0.0.0.0 www.rd.jae.su
+0.0.0.0 www.rdrama.net
 0.0.0.0 www.readytogo.net
 0.0.0.0 www.reddi.tk
 0.0.0.0 www.reddit.artemislena.eu
@@ -581,6 +589,7 @@
 0.0.0.0 www.transfermarkt.us
 0.0.0.0 www.tv2.no
 0.0.0.0 www.twitch.tv
+0.0.0.0 www.twitchy.com
 0.0.0.0 www.twitter.com
 0.0.0.0 www.unblock-websites.com
 0.0.0.0 www.urbandictionary.com

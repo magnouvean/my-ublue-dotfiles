@@ -48,8 +48,8 @@ user-gnome-settings:
 
 setup-dev-python:
   #!/bin/bash
-  distrobox enter dev -- "sudo pacman -S --noconfirm --needed ipython python python-pip tk python-lsp-server"
-  distrobox enter dev -- "pip install black jupyter matplotlib mypy numpy pandas pytest scikit-learn scipy seaborn isort rope pyflakes mccabe pycodestyle pydocstyle"
+  distrobox enter dev -- "sudo pacman -S --noconfirm --needed ipython python python-pipx tk pyright"
+  echo 'for package in black jupyter-core mypy pytest isort pyflakes pycodestyle pydocstyle; do pipx install $package; done' | distrobox enter dev
 
 setup-dev-R:
   #!/bin/bash
