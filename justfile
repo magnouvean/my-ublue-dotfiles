@@ -6,6 +6,7 @@ install-dotfiles:
   mkdir -p $HOME/.config/tmux
   mkdir -p $HOME/.config/zsh
   mkdir -p $HOME/.local/share/distrobox/home/dev/.config/VSCodium/User
+  mkdir -p $HOME/.local/share/distrobox/home/dev/.config/git
   mkdir -p $HOME/.local/share/distrobox/home/dev/C/
   mkdir -p $HOME/.local/share/distrobox/home/dev/R/
   mkdir -p $HOME/.local/share/distrobox/home/dev/go/
@@ -17,7 +18,9 @@ install-dotfiles:
   mkdir -p $HOME/.local/share/distrobox/home/dev/rust/
   mkdir -p $HOME/Sync/
   echo "Copying files over"
+  [ -L $HOME/.local/share/distrobox/home/dev/.gnupg ] || ( rm -rf $HOME/.local/share/distrobox/home/dev/.gnupg && ln -s $HOME/.gnupg $HOME/.local/share/distrobox/home/dev/.gnupg )
   cp files/git/config $HOME/.config/git/config
+  cp files/git/config $HOME/.local/share/distrobox/home/dev/.config/git/config
   cp files/syncthing/stignore $HOME/Sync/.stignore
   cp files/tmux/tmux.conf $HOME/.config/tmux/tmux.conf
   cp files/zsh/zshrc $HOME/.zshrc
