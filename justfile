@@ -18,7 +18,6 @@ install-dotfiles:
   mkdir -p $HOME/.local/share/distrobox/home/dev/rust/
   mkdir -p $HOME/Sync/
   echo "Copying files over"
-  [ -L $HOME/.local/share/distrobox/home/dev/.gnupg ] || ( rm -rf $HOME/.local/share/distrobox/home/dev/.gnupg && ln -s $HOME/.gnupg $HOME/.local/share/distrobox/home/dev/.gnupg )
   cp files/git/config $HOME/.config/git/config
   cp files/git/config $HOME/.local/share/distrobox/home/dev/.config/git/config
   cp files/syncthing/stignore $HOME/Sync/.stignore
