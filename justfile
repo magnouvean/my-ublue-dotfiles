@@ -69,8 +69,4 @@ setup-dev-julia:
 
 setup-dev-latex:
   #!/bin/bash
-  distrobox enter dev -- "sudo pacman -S --noconfirm --needed pandoc texlive-most"
-  echo 'mkdir -p ~/.local/bin' | distrobox enter dev
-  echo '[ -f ~/.local/bin/digestif ] || wget "https://raw.githubusercontent.com/astoff/digestif/master/scripts/digestif" -O ~/.local/bin/digestif' | distrobox enter dev
-  echo 'chmod +x ~/.local/bin/digestif' | distrobox enter dev
-  echo 'digestif -g' | distrobox enter dev
+  distrobox enter dev -- "sudo pacman -S --noconfirm --needed pandoc texlive"
