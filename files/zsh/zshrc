@@ -62,12 +62,17 @@ elif [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
 fi
 
 ec() {
-    if [ -d ~/.local/share/distrobox/home/dev/.spacemacs.d ]; then
-        echo "[ -f ~/.emacs ] && rm ~/.emacs" | distrobox enter dev
-    elif ! [ -d ~/.local/share/distrobox/home/dev/.config/doom ]; then
+    if ! [ -d ~/.local/share/distrobox/home/dev/.config/doom ]; then
         echo "Emacs not found. Please install in dev container first" && exit
     fi
     distrobox enter dev -- emacsclient --alternate-editor= -nw $1
+}
+
+R() {
+    if ! distrobox enter dev -- "which R &> /dev/null"; then
+        echo "R not found. Please install in dev container first" && exit
+    fi
+    distrobox enter dev -- R $1
 }
 
 distrobox list | grep -q "dev" && distrobox enter dev -- "which emacsclient &> /dev/null" && export GIT_EDITOR="distrobox enter dev -- emacsclient --alternate-editor= -nw"
