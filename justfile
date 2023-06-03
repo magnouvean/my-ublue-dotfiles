@@ -27,10 +27,13 @@ install-dotfiles:
   cp files/vscode/*.json $HOME/.local/share/distrobox/home/dev/.config/VSCodium/User/
   echo "Copying over system files"
   cmp -s /etc/hosts files/hosts || sudo cp files/hosts /etc/hosts
+  [ -f $HOME/.local/share/applications/dev.desktop ] && rm $HOME/.local/share/applications/dev.desktop
 
 set-shell:
   #!/bin/bash
   [ "$SHELL" = "/bin/zsh" ] || chsh -s /bin/zsh
+
+gnome_terminal_profile := `gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'"`
 
 user-gnome-settings:
   #!/bin/bash
@@ -47,6 +50,9 @@ user-gnome-settings:
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command "'gtk-launch org.ferdium.Ferdium.desktop'"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command "'gtk-launch net.lutris.Lutris.desktop'"
   gsettings set org.gnome.shell favorite-apps "['com.brave.Browser.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop']"
+  dconf write /org/gnome/terminal/legacy/profiles:/:{{gnome_terminal_profile}}/use-system-font false
+  dconf write /org/gnome/terminal/legacy/profiles:/:{{gnome_terminal_profile}}/use-transparent-background true
+  dconf write /org/gnome/terminal/legacy/profiles:/:{{gnome_terminal_profile}}/background-transparency-percent 15
 
 setup-dev-python:
   #!/bin/bash
