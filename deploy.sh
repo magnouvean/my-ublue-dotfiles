@@ -6,24 +6,24 @@ cwd=$(dirname $0)
 if [ "$1" = "" ]; then
 
     # System
-    # just -f /etc/justfile update
-    just -f /etc/justfile setup-flatpaks
-    # just -f /etc/justfile setup-dev-vscodium
-    just -f /etc/justfile setup-dev-doom
-    just -f /etc/justfile enable-services
+    # just -f /usr/share/ublue-os/just/custom.just update
+    just -f /usr/share/ublue-os/just/custom.just flatpaks
+    # just -f /usr/share/ublue-os/just/custom.just dev-vscodium
+    just -f /usr/share/ublue-os/just/custom.just dev-doom
+    just -f /usr/share/ublue-os/just/custom.just services
 
     # User
-    just -f $cwd/justfile install-dotfiles
-    just -f $cwd/justfile set-shell
-    just -f $cwd/justfile user-gnome-settings
+    just -f $cwd/justfile dotfiles
+    just -f $cwd/justfile shell
+    just -f $cwd/justfile gnome-settings
 
 elif [ "$1" = "extra" ]; then
 
     # Programming languages
-    just -f $cwd/justfile setup-dev-python
-    just -f $cwd/justfile setup-dev-julia
-    just -f $cwd/justfile setup-dev-R
-    just -f $cwd/justfile setup-dev-latex
+    just -f $cwd/justfile dev-python
+    just -f $cwd/justfile dev-julia
+    just -f $cwd/justfile dev-R
+    just -f $cwd/justfile dev-latex
 
 else
 

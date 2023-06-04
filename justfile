@@ -1,4 +1,4 @@
-install-dotfiles:
+dotfiles:
   #!/bin/bash
   echo "Create directories"
   mkdir -p $HOME/.config/autostart
@@ -29,13 +29,13 @@ install-dotfiles:
   cmp -s /etc/hosts files/hosts || sudo cp files/hosts /etc/hosts
   [ -f $HOME/.local/share/applications/dev.desktop ] && rm $HOME/.local/share/applications/dev.desktop
 
-set-shell:
+shell:
   #!/bin/bash
   [ "$SHELL" = "/bin/zsh" ] || chsh -s /bin/zsh
 
 gnome_terminal_profile := `gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'"`
 
-user-gnome-settings:
+gnome-settings:
   #!/bin/bash
   xdg-settings set default-web-browser com.brave.Browser.desktop
   if ! [ -f $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json ]; then
@@ -54,25 +54,25 @@ user-gnome-settings:
   dconf write /org/gnome/terminal/legacy/profiles:/:{{gnome_terminal_profile}}/use-transparent-background true
   dconf write /org/gnome/terminal/legacy/profiles:/:{{gnome_terminal_profile}}/background-transparency-percent 15
 
-setup-dev-python:
+dev-python:
   #!/bin/bash
   distrobox enter dev -- "sudo pacman -S --noconfirm --needed ipython python python-pipx tk pyright"
   echo 'for package in black jupyter-core mypy pytest isort pyflakes pycodestyle pydocstyle; do pipx install $package; done' | distrobox enter dev
 
-setup-dev-R:
+dev-R:
   #!/bin/bash
   echo "mkdir -p ~/R/lib" | distrobox enter dev
   echo 'echo "R_LIBS_USER=~/R/lib" > ~/.Renviron' | distrobox enter dev
   distrobox enter dev -- "sudo pacman -S --noconfirm --needed r r-nnet r-mass"
   echo "R -e 'install.packages(c(\"RSNNS\", \"gam\", \"glmnet\", \"languageserver\", \"leaps\", \"testthat\", \"tidyverse\", \"tree\"), repos=\"https://cloud.r-project.org\")'" | distrobox enter dev
 
-setup-dev-julia:
+dev-julia:
   #!/bin/bash
   echo '[ -f $HOME/.juliaup/bin/juliaup ] && $HOME/.juliaup/bin/juliaup update' | distrobox enter dev
   echo '[ -f $HOME/.juliaup/bin/juliaup ] || curl -fsSL https://install.julialang.org | sh -s -- --yes' | distrobox enter dev
   echo 'sudo ln -s ~/.juliaup/bin/julia /usr/bin/julia' | distrobox enter dev
   echo '$HOME/.juliaup/bin/julia -e "using Pkg; Pkg.add.([\"Distributions\", \"Plots\", \"LanguageServer\", \"JuliaFormatter\", \"IJulia\"])"' | distrobox enter dev
 
-setup-dev-latex:
+dev-latex:
   #!/bin/bash
   distrobox enter dev -- "sudo pacman -S --noconfirm --needed pandoc texlive"
