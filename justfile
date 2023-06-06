@@ -26,7 +26,7 @@ dotfiles:
   cp files/autostart/org.ferdium.Ferdium.desktop $HOME/.config/autostart/org.ferdium.Ferdium.desktop
   cp files/vscode/*.json $HOME/.local/share/distrobox/home/dev/.config/VSCodium/User/
   echo "Removing unwanted files"
-  [ -f $HOME/.local/share/applications/dev.desktop ] && rm $HOME/.local/share/applications/dev.desktop
+  if [ -f $HOME/.local/share/applications/dev.desktop ]; then rm $HOME/.local/share/applications/dev.desktop; fi
 
 system user_password=`read -p 'Sudo password: ' -s password && echo $password`:
   #!/bin/bash
