@@ -5,16 +5,14 @@ cwd=$(dirname $0)
 
 if [ "$1" = "" ]; then
 
-    # System
+    just -f $cwd/justfile system
     # just -f /usr/share/ublue-os/just/custom.just update
     just -f /usr/share/ublue-os/just/custom.just flatpaks
     # just -f /usr/share/ublue-os/just/custom.just dev-vscodium
     just -f /usr/share/ublue-os/just/custom.just dev-doom
     just -f /usr/share/ublue-os/just/custom.just services
 
-    # User
     just -f $cwd/justfile dotfiles
-    just -f $cwd/justfile shell
     just -f $cwd/justfile gnome-settings
 
 elif [ "$1" = "extra" ]; then

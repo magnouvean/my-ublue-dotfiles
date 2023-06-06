@@ -1,0 +1,77 @@
+[org/gnome/settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']
+email=@as []
+help=@as []
+home=['<Alt>f']
+magnifier=@as []
+magnifier-zoom-in=@as []
+magnifier-zoom-out=@as []
+screenreader=@as []
+screensaver=['<Super><Shift>s']
+www=['<Alt>w']
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Alt>Return'
+command='gnome-terminal'
+name='Launch terminal'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1]
+binding='<Alt>e'
+name='Launch editor'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2]
+binding='<Alt>m'
+name='Launch mail client'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3]
+binding='<Alt>g'
+name='Launch game launch'
+
+[org/gnome/shell/keybindings]
+focus-active-notification=@as []
+toggle-application-view=@as []
+toggle-message-tray=['<Super>m']
+toggle-overview=['<Super>r']
+
+[org/gnome/desktop/wm/keybindings]
+close=['<Super>q']
+minimize=@as []
+move-to-workspace-1=['<Super><Shift>1']
+move-to-workspace-2=['<Super><Shift>2']
+move-to-workspace-3=['<Super><Shift>3']
+move-to-workspace-4=['<Super><Shift>4']
+move-to-workspace-5=['<Super><Shift>5']
+move-to-workspace-6=['<Super><Shift>6']
+move-to-workspace-7=['<Super><Shift>7']
+move-to-workspace-8=['<Super><Shift>8']
+move-to-workspace-last=@as []
+switch-applications-backward=['<Super>Tab']
+switch-applications=['<Super>Tab']
+switch-group-backward=@as []
+switch-group=@as []
+switch-input-source-backward=@as []
+switch-input-source=@as []
+switch-panels-backward=@as []
+switch-panels=@as []
+switch-to-workspace-1=['<Super>1']
+switch-to-workspace-2=['<Super>2']
+switch-to-workspace-3=['<Super>3']
+switch-to-workspace-4=['<Super>4']
+switch-to-workspace-5=['<Super>5']
+switch-to-workspace-6=['<Super>6']
+switch-to-workspace-7=['<Super>7']
+switch-to-workspace-8=['<Super>8']
+switch-to-workspace-down=@as []
+switch-to-workspace-last=@as []
+switch-to-workspace-up=@as []
+toggle-fullscreen=['<Super>f']
+toggle-maximized=@as []
+switch-to-application-1=@as []
+switch-to-application-2=@as []
+switch-to-application-3=@as []
+switch-to-application-4=@as []
+switch-to-application-5=@as []
+switch-to-application-6=@as []
+switch-to-application-7=@as []
+switch-to-application-8=@as []
+switch-to-application-9=@as []

@@ -1,0 +1,13 @@
+[org/gnome/desktop/wm/preferences]
+button-layout=":minimize,close"
+num-workspaces=8
+
+[org/gnome/mutter]
+dynamic-workspaces=false
+overlay-key=""
+workspaces-only-on-primary=false
+
+[org/gnome/mutter/keybindings]
+switch-monitor=@as []
+toggle-tiled-left=@as []
+toggle-tiled-right=@as []

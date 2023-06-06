@@ -25,17 +25,26 @@ dotfiles:
   cp files/zsh/zshrc $HOME/.zshrc
   cp files/autostart/org.ferdium.Ferdium.desktop $HOME/.config/autostart/org.ferdium.Ferdium.desktop
   cp files/vscode/*.json $HOME/.local/share/distrobox/home/dev/.config/VSCodium/User/
-  echo "Copying over system files"
-  cmp -s /etc/hosts files/hosts || sudo cp files/hosts /etc/hosts
+  echo "Removing unwanted files"
   [ -f $HOME/.local/share/applications/dev.desktop ] && rm $HOME/.local/share/applications/dev.desktop
 
-shell:
+system user_password=`read -p 'Sudo password: ' -s password && echo $password`:
   #!/bin/bash
-  [ "$SHELL" = "/bin/zsh" ] || chsh -s /bin/zsh
+  echo "Copying over system files and configurations"
+  set -e
+  cmp -s /etc/hosts files/hosts || echo "{{user_password}}" | sudo -S cp files/hosts /etc/hosts
+  [ -f /usr/bin/gnome-shell ] && echo "{{user_password}}" | sudo -S mkdir -p /etc/dconf/db/gdm.d
+  [ -f /usr/bin/gnome-shell ] && echo "{{user_password}}" | sudo -S mkdir -p /etc/dconf/db/local.d
+  [ -f /usr/bin/gnome-shell ] && echo "{{user_password}}" | sudo -S mkdir -p /etc/dconf/profile
+  [ -f /usr/bin/gnome-shell ] && echo "{{user_password}}" | sudo -S cp files/dconf/db/gdm.d/* /etc/dconf/db/gdm.d/
+  [ -f /usr/bin/gnome-shell ] && echo "{{user_password}}" | sudo -S cp files/dconf/db/local.d/* /etc/dconf/db/local.d/
+  [ -f /usr/bin/gnome-shell ] && echo "{{user_password}}" | sudo -S cp files/dconf/profile/* /etc/dconf/profile/
+  [ -f /usr/bin/gnome-shell ] && echo "{{user_password}}" | sudo -S dconf update
+  [ "$SHELL" = "/bin/zsh" ] || echo "{{user_password}}" | chsh -s /bin/zsh
+  [ -f /usr/bin/gnome-shell ] && echo "{{user_password}}" | sudo -S flatpak override --env=GTK_THEME="Adwaita-dark"
+  [ -f /usr/bin/gnome-shell ] && echo "{{user_password}}" | sudo -S flatpak override --env=ICON_THEME="Papirus-Dark"
 
-gnome_terminal_profile := `gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'"`
-
-gnome-settings:
+gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'"`:
   #!/bin/bash
   xdg-settings set default-web-browser com.brave.Browser.desktop
   if ! [ -f $HOME/.var/app/org.ferdium.Ferdium/config/Ferdium/config/settings.json ]; then
