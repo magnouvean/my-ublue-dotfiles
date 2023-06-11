@@ -17,6 +17,7 @@ dotfiles:
   mkdir -p $HOME/.local/share/distrobox/home/dev/python/
   mkdir -p $HOME/.local/share/distrobox/home/dev/rust/
   mkdir -p $HOME/Sync/
+
   echo "Copying files over"
   cp files/git/config $HOME/.config/git/config
   cp files/git/config $HOME/.local/share/distrobox/home/dev/.config/git/config
@@ -29,8 +30,13 @@ dotfiles:
   if [ -f $HOME/.local/share/applications/dev.desktop ]; then
     rm $HOME/.local/share/applications/dev.desktop
   fi
+
   echo "Dotfiles/settings for dev container apps"
   echo 'echo "# ZSH CONFIG\nPATH=\"$PATH:$HOME/.local/bin\"\nsource /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\nsource /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh\nalias gst=\"git status\"\nalias gad=\"git add\"\nalias gco=\"git commit\"\nalias gpu=\"git push\"" > ~/.zshrc' | distrobox enter dev
+
+  echo "Apply flatpak theme"
+  flatpak --user override --filesystem=xdg-config/gtk-3.0:ro
+  flatpak --user override --filesystem=xdg-config/gtk-4.0:ro
 
 system user_password=`read -p 'Sudo password: ' -s password && echo $password`:
   #!/bin/bash
@@ -42,6 +48,10 @@ system user_password=`read -p 'Sudo password: ' -s password && echo $password`:
     echo "{{user_password}}" | sudo -S cp ./files/kde/kde_settings.conf /etc/sddm.conf.d
   fi
   [ "$SHELL" = "/bin/zsh" ] || echo "{{user_password}}" | chsh -s /bin/zsh
+  mkdir -p $HOME/.config/gtk-3.0
+  mkdir -p $HOME/.config/gtk-4.0
+  touch $HOME/.config/gtk-3.0/settings.ini
+  touch $HOME/.config/gtk-4.0/settings.ini
 
 gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'"`:
   #!/bin/bash
@@ -52,75 +62,76 @@ gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.Profiles
   dconf write /org/gnome/terminal/legacy/profiles:/:{{gnome_terminal_profile}}/use-system-font false
   dconf write /org/gnome/terminal/legacy/profiles:/:{{gnome_terminal_profile}}/use-transparent-background true
   dconf write /org/gnome/terminal/legacy/profiles:/:{{gnome_terminal_profile}}/background-transparency-percent 15
-  gsettings set org.gnome.shell enabled-extensions ['pop-shell@system76.com', 'appindicatorsupport@rgcjonas.gmail.com']
-  gsettings set org.gnome.shell.extensions.pop-shell activate-launcher []
+  gsettings set org.gnome.shell enabled-extensions "['pop-shell@system76.com', 'appindicatorsupport@rgcjonas.gmail.com']"
+  gsettings set org.gnome.shell.extensions.pop-shell activate-launcher "[]"
   gsettings set org.gnome.shell.extensions.pop-shell active-hint true
   gsettings set org.gnome.shell.extensions.pop-shell gap-inner 4
   gsettings set org.gnome.shell.extensions.pop-shell gap-outer 4
   gsettings set org.gnome.shell.extensions.pop-shell hint-color-rgba 'rgba(120, 117, 122, 1)'
-  gsettings set org.gnome.shell.extensions.pop-shell pop-monitor-down []
-  gsettings set org.gnome.shell.extensions.pop-shell pop-monitor-left []
-  gsettings set org.gnome.shell.extensions.pop-shell pop-monitor-right []
-  gsettings set org.gnome.shell.extensions.pop-shell pop-monitor-up []
-  gsettings set org.gnome.shell.extensions.pop-shell pop-workspace-down []
-  gsettings set org.gnome.shell.extensions.pop-shell pop-workspace-up []
+  gsettings set org.gnome.shell.extensions.pop-shell pop-monitor-down "[]"
+  gsettings set org.gnome.shell.extensions.pop-shell pop-monitor-left "[]"
+  gsettings set org.gnome.shell.extensions.pop-shell pop-monitor-right "[]"
+  gsettings set org.gnome.shell.extensions.pop-shell pop-monitor-up "[]"
+  gsettings set org.gnome.shell.extensions.pop-shell pop-workspace-down "[]"
+  gsettings set org.gnome.shell.extensions.pop-shell pop-workspace-up "[]"
   gsettings set org.gnome.shell.extensions.pop-shell tile-by-default true
-  gsettings set org.gnome.shell.extensions.pop-shell tile-enter ['<Super>a']
-  gsettings set org.gnome.shell.extensions.pop-shell tile-orientation []
-  gsettings set org.gnome.shell.extensions.pop-shell tile-swap-down []
-  gsettings set org.gnome.shell.extensions.pop-shell tile-swap-left []
-  gsettings set org.gnome.shell.extensions.pop-shell tile-swap-right []
-  gsettings set org.gnome.shell.extensions.pop-shell tile-swap-up []
-  gsettings set org.gnome.shell.extensions.pop-shell toggle-floating ['<Super>s']
-  gsettings set org.gnome.shell.extensions.pop-shell toggle-stacking []
-  gsettings set org.gnome.shell.extensions.pop-shell toggle-stacking-global []
-  gsettings set org.gnome.shell.extensions.pop-shell toggle-tiling []
+  gsettings set org.gnome.shell.extensions.pop-shell tile-enter "['<Super>a']"
+  gsettings set org.gnome.shell.extensions.pop-shell tile-orientation "[]"
+  gsettings set org.gnome.shell.extensions.pop-shell tile-swap-down "[]"
+  gsettings set org.gnome.shell.extensions.pop-shell tile-swap-left "[]"
+  gsettings set org.gnome.shell.extensions.pop-shell tile-swap-right "[]"
+  gsettings set org.gnome.shell.extensions.pop-shell tile-swap-up "[]"
+  gsettings set org.gnome.shell.extensions.pop-shell toggle-floating "['<Super>s']"
+  gsettings set org.gnome.shell.extensions.pop-shell toggle-stacking "[]"
+  gsettings set org.gnome.shell.extensions.pop-shell toggle-stacking-global "[]"
+  gsettings set org.gnome.shell.extensions.pop-shell toggle-tiling "[]"
   gsettings set org.gnome.shell.extensions.pop-shell active-hint-border-radius 10
   gsettings set org.gnome.shell disable-user-extensions false
 
-  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']
-  gsettings set org.gnome.settings-daemon.plugins.media-keys email []
-  gsettings set org.gnome.settings-daemon.plugins.media-keys help []
-  gsettings set org.gnome.settings-daemon.plugins.media-keys home ['<Alt>f']
-  gsettings set org.gnome.settings-daemon.plugins.media-keys magnifier []
-  gsettings set org.gnome.settings-daemon.plugins.media-keys magnifier-zoom-in []
-  gsettings set org.gnome.settings-daemon.plugins.media-keys magnifier-zoom-out []
-  gsettings set org.gnome.settings-daemon.plugins.media-keys screenreader []
-  gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver ['<Super><Shift>s']
-  gsettings set org.gnome.settings-daemon.plugins.media-keys www ['<Alt>w']
+  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys email "[]"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys help "[]"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Alt>f']"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys magnifier "[]"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys magnifier-zoom-in "[]"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys magnifier-zoom-out "[]"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys screenreader "[]"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "['<Super><Shift>s']"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys www "['<Alt>w']"
 
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Alt>Return'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'gnome-terminal'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Launch terminal'
 
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding='<Alt>e'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name='Launch editor'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Alt>e'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Launch editor'
   
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding='<Alt>m'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name='Launch mail client'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Alt>m'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Launch mail client'
   
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Alt>g'
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'Launch game launcher'
-  
-  gsettings set org.gnome.shell.keybindings focus-active-notification []
-  gsettings set org.gnome.shell.keybindings toggle-application-view []
-  gsettings set org.gnome.shell.keybindings toggle-message-tray ['<Super>m']
-  gsettings set org.gnome.shell.keybindings toggle-overview ['<Super>r']
 
-  gsettings set org.gnome.desktop.wm.keybindings close ['<Super>q']
-  gsettings set org.gnome.desktop.wm.keybindings minimize []
-  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-1 ['<Super><Shift>1']
-  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-2 ['<Super><Shift>2']
-  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-3 ['<Super><Shift>3']
-  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-4 ['<Super><Shift>4']
-  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-5 ['<Super><Shift>5']
-  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-6 ['<Super><Shift>6']
-  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-7 ['<Super><Shift>7']
-  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-8 ['<Super><Shift>8']
-  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-last []
-  gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward ['<Super>Tab']
-  gsettings set org.gnome.desktop.wm.keybindings switch-applications ['<Super>Tab']
-  gsettings set org.gnome.desktop.wm.keybindings switch-group-backward []
+  
+  gsettings set org.gnome.shell.keybindings focus-active-notification "[]"
+  gsettings set org.gnome.shell.keybindings toggle-application-view "[]"
+  gsettings set org.gnome.shell.keybindings toggle-message-tray "['<Super>m']"
+  gsettings set org.gnome.shell.keybindings toggle-overview "['<Super>r']"
+
+  gsettings set org.gnome.desktop.wm.keybindings close "['<Super>q']"
+  gsettings set org.gnome.desktop.wm.keybindings minimize "[]"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-1 "['<Super><Shift>1']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-2 "['<Super><Shift>2']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-3 "['<Super><Shift>3']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-4 "['<Super><Shift>4']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-5 "['<Super><Shift>5']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-6 "['<Super><Shift>6']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-7 "['<Super><Shift>7']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-8 "['<Super><Shift>8']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-last "[]"
+  gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "['<Super>Tab']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Super>Tab']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "[]"
 
   gsettings set org.gnome.desktop.background picture-options 'zoom'
   gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/gnome/keys-l.webp'
@@ -136,15 +147,16 @@ gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.Profiles
   gsettings set org.gnome.mutter overlay-key ""
   gsettings set org.gnome.mutter workspaces-only-on-primary false
 
-  gsettings set org.gnome.mutter.keybindings switch-monitor []
-  gsettings set org.gnome.mutter.keybindings toggle-tiled-left []
-  gsettings set org.gnome.mutter.keybindings toggle-tiled-right []
+  gsettings set org.gnome.mutter.keybindings switch-monitor "[]"
+  gsettings set org.gnome.mutter.keybindings toggle-tiled-left "[]"
+  gsettings set org.gnome.mutter.keybindings toggle-tiled-right "[]"
 
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 0
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1200
 
-  echo "Apply flatpak theme"
-  flatpak --user override --env=GTK_THEME=Adwaita-dark
+  echo "Set gtk 3/4 config files"
+  printf "[Settings]\ngtk-theme-name = Adwaita-dark\ngtk-application-prefer-dark-theme = true" > $HOME/.config/gtk-3.0/settings.ini
+  cp $HOME/.config/gtk-3.0/settings.ini $HOME/.config/gtk-4.0/settings.ini
 
 kde-settings:
   #!/bin/bash
@@ -238,10 +250,6 @@ kde-settings:
   echo "Set theme and wallpaper"
   plasma-apply-lookandfeel -a org.kde.breezedark.desktop
   plasma-apply-wallpaperimage /usr/share/wallpapers/Cluster/
-
-  echo "Apply flatpak theme"
-  flatpak --user override --filesystem=xdg-config/gtk-3.0:ro
-  flatpak --user override --filesystem=xdg-config/gtk-4.0:ro
 
 dev-python:
   #!/bin/bash
