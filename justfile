@@ -195,6 +195,8 @@ kde-settings:
   ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "com.brave.Browser.desktop" "_launch" "Alt+W,,"
   ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "dev-emacsclient.desktop" "_k_friendly_name" "Editor"
   ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "dev-emacsclient.desktop" "_launch" "Alt+E,,"
+  ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "org.kde.kontact.desktop" "_k_friendly_name" "Email"
+  ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "org.kde.kontact.desktop" "_launch" "Alt+M,,"
   ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "net.lutris.Lutris.desktop" "_k_friendly_name" "Game Launcher"
   ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "net.lutris.Lutris.desktop" "_launch" "Alt+G,,"
   ./files/kde/write_keybinding_abs.py "$HOME/.config/kwinrc" "Plugins" "bismuthEnabled" "true"
