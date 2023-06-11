@@ -13,7 +13,8 @@ if [ "$1" = "" ]; then
     just -f /usr/share/ublue-os/just/custom.just services
 
     just -f $cwd/justfile dotfiles
-    just -f $cwd/justfile gnome-settings
+    [ -f /usr/bin/gnome-shell ] && just -f $cwd/justfile gnome-settings
+    [ -f /usr/bin/plasmashell ] && just -f $cwd/justfile kde-settings
 
 elif [ "$1" = "extra" ]; then
 
