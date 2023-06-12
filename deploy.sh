@@ -5,6 +5,7 @@ cwd=$(dirname $0)
 
 if [ "$1" = "" ]; then
 
+    [ -f /usr/bin/plasmashell ] && just -f $cwd/justfile kde-theme
     just -f $cwd/justfile system
     # just -f /usr/share/ublue-os/just/custom.just update
     just -f /usr/share/ublue-os/just/custom.just flatpaks

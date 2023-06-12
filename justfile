@@ -46,12 +46,17 @@ system user_password=`read -p 'Sudo password: ' -s password && echo $password`:
   if [ -f /usr/bin/sddm ]; then
     echo "{{user_password}}" | sudo -S mkdir -p /etc/sddm.conf.d/
     echo "{{user_password}}" | sudo -S cp ./files/kde/kde_settings.conf /etc/sddm.conf.d
+    echo "{{user_password}}" | sudo -S cp $HOME/.config/kdeglobals /var/lib/sddm/.config/kdeglobals
   fi
   [ "$SHELL" = "/bin/zsh" ] || echo "{{user_password}}" | chsh -s /bin/zsh
   mkdir -p $HOME/.config/gtk-3.0
   mkdir -p $HOME/.config/gtk-4.0
   touch $HOME/.config/gtk-3.0/settings.ini
   touch $HOME/.config/gtk-4.0/settings.ini
+
+  echo "Setting up flatpak repos"
+  if flatpak remotes | grep -q "fedora"; then echo "{{user_password}}" | sudo -S flatpak remote-delete fedora; fi
+  echo "{{user_password}}" | sudo -S flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'"`:
   #!/bin/bash
@@ -158,6 +163,12 @@ gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.Profiles
   printf "[Settings]\ngtk-theme-name = Adwaita-dark\ngtk-application-prefer-dark-theme = true" > $HOME/.config/gtk-3.0/settings.ini
   cp $HOME/.config/gtk-3.0/settings.ini $HOME/.config/gtk-4.0/settings.ini
 
+kde-theme:
+  #!/bin/bash
+  echo "Set theme and wallpaper"
+  plasma-apply-lookandfeel -a org.kde.breezedark.desktop
+  plasma-apply-wallpaperimage /usr/share/wallpapers/Cluster/
+
 kde-settings:
   #!/bin/bash
   echo "Apply kde layout"
@@ -220,8 +231,8 @@ kde-settings:
   ./files/kde/write_keybinding_abs.py "$HOME/.config/krunnerrc" "General" "FreeFloating" "true"
   ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "kwin" "Window to Next Screen" 'Alt+Shift+L,,'
   ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "kwin" "Window to Previous Screen" 'Alt+Shift+H,,'
-  ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "Switch to Previous Screen" "Alt+H,,"
-  ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "Switch to Next Screen" "Alt+L,,"
+  ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "kwin" "Switch to Previous Screen" "Alt+H,,"
+  ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "kwin" "Switch to Next Screen" "Alt+L,,"
   ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "kwin" "Window Close" "Meta+Q,,"
 
   ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "ksmserver" 'Lock Session' 'ScreenSaver\tMeta+Shift+S,,'
@@ -248,10 +259,7 @@ kde-settings:
   ./files/kde/write_keybinding_abs.py "$HOME/.config/powermanagementprofilesrc" "Battery][DPMSControl" "idleTime" "300"
   ./files/kde/write_keybinding_abs.py "$HOME/.config/powermanagementprofilesrc" "Battery][DimDisplay" "idleTime" "250000"
   ./files/kde/write_keybinding_abs.py "$HOME/.config/kwinrc" "Windows" "ActiveMouseScreen" "false"
-
-  echo "Set theme and wallpaper"
-  plasma-apply-lookandfeel -a org.kde.breezedark.desktop
-  plasma-apply-wallpaperimage /usr/share/wallpapers/Cluster/
+  ./files/kde/write_keybinding_abs.py "$HOME/.config/kwinrc" "Windows" "SeparateScreenFocus" "true"
 
 dev-python:
   #!/bin/bash
