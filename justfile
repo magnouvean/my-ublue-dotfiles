@@ -264,7 +264,7 @@ kde-settings:
 dev-python:
   #!/bin/bash
   distrobox enter dev -- "sudo pacman -S --noconfirm --needed ipython python python-pipx tk pyright"
-  echo 'for package in black jupyter-core mypy pytest isort pyflakes pycodestyle pydocstyle; do pipx install $package; done' | distrobox enter dev
+  echo 'for package in black jupyter mypy pytest isort pyflakes pycodestyle pydocstyle; do pipx install $package --include-deps; done' | distrobox enter dev
 
 dev-R:
   #!/bin/bash
