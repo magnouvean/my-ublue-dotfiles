@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=DavMail
+Exec=bash -c "[ -f ~/.davmail.properties ] && flatpak run org.davmail.DavMail"
+Terminal=false
+Type=Application
+Icon=org.davmail.DavMail

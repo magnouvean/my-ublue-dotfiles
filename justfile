@@ -24,7 +24,7 @@ dotfiles:
     cp files/syncthing/stignore $HOME/Sync/.stignore
     cp files/tmux/tmux.conf $HOME/.config/tmux/tmux.conf
     cp files/zsh/zshrc $HOME/.zshrc
-    # cp files/autostart/* $HOME/.config/autostart/
+    cp files/autostart/* $HOME/.config/autostart/
     cp files/vscode/*.json $HOME/.local/share/distrobox/home/dev/.config/VSCodium/User/
     echo "Removing unwanted files"
     if [ -f $HOME/.local/share/applications/dev.desktop ]; then
@@ -53,10 +53,6 @@ system user_password=`read -p 'Sudo password: ' -s password && echo $password`:
     mkdir -p $HOME/.config/gtk-4.0
     touch $HOME/.config/gtk-3.0/settings.ini
     touch $HOME/.config/gtk-4.0/settings.ini
-
-    echo "Setting up flatpak repos"
-    if flatpak remotes | grep -q "fedora"; then echo "{{ user_password }}" | sudo -S flatpak remote-delete fedora; fi
-    echo "{{ user_password }}" | sudo -S flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'"`:
     #!/bin/bash
@@ -206,8 +202,8 @@ kde-settings:
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "com.brave.Browser.desktop" "_launch" "Alt+W,,"
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "dev-emacsclient.desktop" "_k_friendly_name" "Editor"
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "dev-emacsclient.desktop" "_launch" "Alt+E,,"
-    ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "org.kde.kontact.desktop" "_k_friendly_name" "Email"
-    ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "org.kde.kontact.desktop" "_launch" "Alt+M,,"
+    ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "org.kde.kmail2.desktop" "_k_friendly_name" "Email"
+    ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "org.kde.kmail2.desktop" "_launch" "Alt+M,,"
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "net.lutris.Lutris.desktop" "_k_friendly_name" "Game Launcher"
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "net.lutris.Lutris.desktop" "_launch" "Alt+G,,"
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kwinrc" "Plugins" "bismuthEnabled" "true"
@@ -263,15 +259,16 @@ kde-settings:
 
 dev-python:
     #!/bin/bash
-    distrobox enter dev -- "sudo pacman -S --noconfirm --needed ipython python python-pipx python-pip tk pyright jupyter-notebook"
-    echo 'for package in black mypy pytest isort jupytext pyflakes pycodestyle pydocstyle; do pipx install $package --include-deps; done' | distrobox enter dev
+    distrobox enter dev -- "sudo pacman -S --noconfirm --needed ipython python python-pipx tk pyright jupyter-notebook"
+    echo 'for package in black mypy pytest isort pyflakes pycodestyle pydocstyle; do pipx install $package --include-deps; done' | distrobox enter dev
 
 dev-R:
     #!/bin/bash
     echo "mkdir -p ~/R/lib" | distrobox enter dev
     echo 'echo "R_LIBS_USER=~/R/lib" > ~/.Renviron' | distrobox enter dev
-    distrobox enter dev -- "sudo pacman -S --noconfirm --needed r r-nnet r-mass"
-    echo "R -e 'install.packages(c(\"RSNNS\", \"gam\", \"glmnet\", \"languageserver\", \"leaps\", \"testthat\", \"tidyverse\", \"tree\"), repos=\"https://cloud.r-project.org\")'" | distrobox enter dev
+    distrobox enter dev -- "sudo pacman -S --noconfirm --needed r r-nnet r-mass gcc-fortran"
+    echo "R -e 'install.packages(c(\"RSNNS\", \"gam\", \"glmnet\", \"languageserver\", \"testthat\", \"tidyverse\", \"tree\", \"IRkernel\", \"leaps\"), repos=\"https://cloud.r-project.org\")'" | distrobox enter dev
+    echo "R -e 'IRkernel::installspec()'" | distrobox enter dev
 
 dev-julia:
     #!/bin/bash
