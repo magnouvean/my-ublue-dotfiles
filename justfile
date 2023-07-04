@@ -169,6 +169,9 @@ gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.Profiles
     printf "[Settings]\ngtk-theme-name = Adwaita-dark\ngtk-application-prefer-dark-theme = true" > $HOME/.config/gtk-3.0/settings.ini
     cp $HOME/.config/gtk-3.0/settings.ini $HOME/.config/gtk-4.0/settings.ini
 
+    echo "Set flatpak gtk themes"
+    flatpak --user override --env=GTK_THEME=Adwaita-dark
+
 kde-theme:
     #!/bin/bash
     echo "Set theme and wallpaper"
