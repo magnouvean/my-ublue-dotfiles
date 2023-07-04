@@ -10,6 +10,7 @@
 0.0.0.0 abcnews.go.com
 0.0.0.0 ad.nl
 0.0.0.0 aljazeera.com
+0.0.0.0 altcensored.com
 0.0.0.0 ao.no
 0.0.0.0 aol.co.uk
 0.0.0.0 api.invidious.io
@@ -38,6 +39,7 @@
 0.0.0.0 channel4.com
 0.0.0.0 chroniclelive.co.uk
 0.0.0.0 cnet.com
+0.0.0.0 cozy.tv
 0.0.0.0 dagbladet.no
 0.0.0.0 dailydot.com
 0.0.0.0 dailymail.co.uk
@@ -50,6 +52,7 @@
 0.0.0.0 desuarchive.org
 0.0.0.0 dexerto.com
 0.0.0.0 dirt.com
+0.0.0.0 dlive.tv
 0.0.0.0 dn.no
 0.0.0.0 docs.invidious.io
 0.0.0.0 edition.cnn.com
@@ -63,6 +66,7 @@
 0.0.0.0 express.co.uk
 0.0.0.0 feddit.de
 0.0.0.0 feddit.it
+0.0.0.0 fedia.io
 0.0.0.0 find.4chan.org
 0.0.0.0 flashscore.com
 0.0.0.0 flashscore.mobi
@@ -124,6 +128,9 @@
 0.0.0.0 invidious.weblibre.org
 0.0.0.0 joe.co.uk
 0.0.0.0 jpost.com
+0.0.0.0 karab.in
+0.0.0.0 kbin.pub
+0.0.0.0 kbin.social
 0.0.0.0 kick.com
 0.0.0.0 kiwifarms.net
 0.0.0.0 kiwifarms.ru
@@ -176,11 +183,13 @@
 0.0.0.0 libreddit.winscloud.net
 0.0.0.0 libreddit.yonalee.eu
 0.0.0.0 live.tv2.no
+0.0.0.0 liverpool.com
 0.0.0.0 liverpoolecho.co.uk
 0.0.0.0 livescore.cz
 0.0.0.0 livescore.football365.com
 0.0.0.0 livescore.in
 0.0.0.0 livescores.biz
+0.0.0.0 looksmax.org
 0.0.0.0 lr.cowfee.moe
 0.0.0.0 lr.mint.lgbt
 0.0.0.0 lr.oversold.host
@@ -358,6 +367,7 @@
 0.0.0.0 washingtonexaminer.com
 0.0.0.0 washingtonpost.com
 0.0.0.0 waybackhn.com
+0.0.0.0 weaintgotnohistory.sbnation.com
 0.0.0.0 web.archive.org
 0.0.0.0 webcache.googleusercontent.com
 0.0.0.0 whoscored.com
@@ -370,6 +380,7 @@
 0.0.0.0 www.9gag.com
 0.0.0.0 www.ad.nl
 0.0.0.0 www.aljazeera.com
+0.0.0.0 www.altcensored.com
 0.0.0.0 www.ao.no
 0.0.0.0 www.aol.co.uk
 0.0.0.0 www.archive.is
@@ -393,6 +404,7 @@
 0.0.0.0 www.channel4.com
 0.0.0.0 www.chroniclelive.co.uk
 0.0.0.0 www.cnet.com
+0.0.0.0 www.cozy.tv
 0.0.0.0 www.dagbladet.no
 0.0.0.0 www.dailydot.com
 0.0.0.0 www.dailymail.co.uk
@@ -405,6 +417,7 @@
 0.0.0.0 www.desuarchive.org
 0.0.0.0 www.dexerto.com
 0.0.0.0 www.dirt.com
+0.0.0.0 www.dlive.tv
 0.0.0.0 www.dn.no
 0.0.0.0 www.espn.co.uk
 0.0.0.0 www.espn.com
@@ -414,6 +427,7 @@
 0.0.0.0 www.express.co.uk
 0.0.0.0 www.feddit.de
 0.0.0.0 www.feddit.it
+0.0.0.0 www.fedia.io
 0.0.0.0 www.flashscore.com
 0.0.0.0 www.flashscore.mobi
 0.0.0.0 www.football.london
@@ -457,6 +471,9 @@
 0.0.0.0 www.invidious.weblibre.org
 0.0.0.0 www.joe.co.uk
 0.0.0.0 www.jpost.com
+0.0.0.0 www.karab.in
+0.0.0.0 www.kbin.pub
+0.0.0.0 www.kbin.social
 0.0.0.0 www.kick.com
 0.0.0.0 www.kiwifarms.net
 0.0.0.0 www.kiwifarms.ru
@@ -508,10 +525,12 @@
 0.0.0.0 www.libreddit.totaldarkness.net
 0.0.0.0 www.libreddit.winscloud.net
 0.0.0.0 www.libreddit.yonalee.eu
+0.0.0.0 www.liverpool.com
 0.0.0.0 www.liverpoolecho.co.uk
 0.0.0.0 www.livescore.cz
 0.0.0.0 www.livescore.in
 0.0.0.0 www.livescores.biz
+0.0.0.0 www.looksmax.org
 0.0.0.0 www.lr.cowfee.moe
 0.0.0.0 www.lr.mint.lgbt
 0.0.0.0 www.lr.oversold.host

@@ -267,7 +267,7 @@ dev-R:
     echo "mkdir -p ~/R/lib" | distrobox enter dev
     echo 'echo "R_LIBS_USER=~/R/lib" > ~/.Renviron' | distrobox enter dev
     distrobox enter dev -- "sudo pacman -S --noconfirm --needed r r-nnet r-mass gcc-fortran"
-    echo "R -e 'install.packages(c(\"RSNNS\", \"gam\", \"glmnet\", \"languageserver\", \"testthat\", \"tidyverse\", \"tree\", \"IRkernel\", \"leaps\"), repos=\"https://cloud.r-project.org\")'" | distrobox enter dev
+    echo "R -e 'install.packages(c(\"languageserver\", \"testthat\", \"IRkernel\"), repos=\"https://cloud.r-project.org\")'" | distrobox enter dev
     echo "R -e 'IRkernel::installspec()'" | distrobox enter dev
 
 dev-julia:
@@ -275,8 +275,14 @@ dev-julia:
     echo '[ -f $HOME/.juliaup/bin/juliaup ] && $HOME/.juliaup/bin/juliaup update' | distrobox enter dev
     echo '[ -f $HOME/.juliaup/bin/juliaup ] || curl -fsSL https://install.julialang.org | sh -s -- --yes' | distrobox enter dev
     echo 'sudo ln -s ~/.juliaup/bin/julia /usr/bin/julia' | distrobox enter dev
-    echo '$HOME/.juliaup/bin/julia -e "using Pkg; Pkg.add.([\"Distributions\", \"Plots\", \"LanguageServer\", \"JuliaFormatter\", \"IJulia\"])"' | distrobox enter dev
+    echo '$HOME/.juliaup/bin/julia -e "using Pkg; Pkg.add.([\"LanguageServer\", \"JuliaFormatter\", \"IJulia\"])"' | distrobox enter dev
 
 dev-latex:
     #!/bin/bash
     distrobox enter dev -- "sudo pacman -S --noconfirm --needed pandoc texlive"
+
+dev-rust:
+    #!/bin/bash
+    echo '[ -d ~/.cargo ] || curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y' | distrobox enter dev
+    echo 'rustup component add clippy' | distrobox enter dev
+    echo 'rustup component add rust-analyzer' | distrobox enter dev
