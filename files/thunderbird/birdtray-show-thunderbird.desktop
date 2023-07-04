@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=flatpak run com.ulduzsoft.Birdtray -s
+Name=Thunderbird (launch through Birdtray)
+NoDisplay=true
+StartupNotify=false
+Type=Application
+X-KDE-GlobalAccel-CommandShortcut=true

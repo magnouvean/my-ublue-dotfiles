@@ -5,6 +5,7 @@ dotfiles:
     mkdir -p $HOME/.config/git
     mkdir -p $HOME/.config/tmux
     mkdir -p $HOME/.config/zsh
+    mkdir -p $HOME/.local/share/applications/
     mkdir -p $HOME/.local/share/distrobox/home/dev/.config/VSCodium/User
     mkdir -p $HOME/.local/share/distrobox/home/dev/.config/git
     mkdir -p $HOME/.local/share/distrobox/home/dev/C/
@@ -16,6 +17,7 @@ dotfiles:
     mkdir -p $HOME/.local/share/distrobox/home/dev/octave/
     mkdir -p $HOME/.local/share/distrobox/home/dev/python/
     mkdir -p $HOME/.local/share/distrobox/home/dev/rust/
+    mkdir -p $HOME/.var/app/com.ulduzsoft.Birdtray/config/
     mkdir -p $HOME/Sync/
 
     echo "Copying files over"
@@ -26,6 +28,8 @@ dotfiles:
     cp files/zsh/zshrc $HOME/.zshrc
     cp files/autostart/* $HOME/.config/autostart/
     cp files/vscode/*.json $HOME/.local/share/distrobox/home/dev/.config/VSCodium/User/
+    cp files/thunderbird/birdtray-config.json $HOME/.var/app/com.ulduzsoft.Birdtray/config/
+    cp files/thunderbird/birdtray-show-thunderbird.desktop $HOME/.local/share/applications/
     echo "Removing unwanted files"
     if [ -f $HOME/.local/share/applications/dev.desktop ]; then
       rm $HOME/.local/share/applications/dev.desktop
@@ -56,8 +60,8 @@ system user_password=`read -p 'Sudo password: ' -s password && echo $password`:
 
 gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'"`:
     #!/bin/bash
-    xdg-settings set default-web-browser com.brave.Browser.desktop
-    gsettings set org.gnome.shell favorite-apps "['com.brave.Browser.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop']"
+    xdg-settings set default-web-browser org.mozilla.firefox.desktop
+    gsettings set org.gnome.shell favorite-apps "['org.mozilla.firefox.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop']"
     dconf write /org/gnome/terminal/legacy/profiles:/:{{ gnome_terminal_profile }}/use-system-font false
     dconf write /org/gnome/terminal/legacy/profiles:/:{{ gnome_terminal_profile }}/use-transparent-background true
     dconf write /org/gnome/terminal/legacy/profiles:/:{{ gnome_terminal_profile }}/background-transparency-percent 15
@@ -107,7 +111,7 @@ gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.Profiles
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Launch editor'
 
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Alt>m'
-    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command "'gtk-launch org.gnome.Evolution.desktop'"
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command "'gtk-launch birdtray-show-thunderbird.desktop'"
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Launch mail client'
 
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Alt>g'
@@ -211,12 +215,12 @@ kde-settings:
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "org.kde.konsole.desktop" "_k_friendly_name" "Konsole"
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "org.kde.konsole.desktop" "_launch" "Alt+Return,,"
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "org.kde.dolphin.desktop" "_launch" "Alt+F,,"
-    ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "com.brave.Browser.desktop" "_k_friendly_name" "Brave Browser"
-    ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "com.brave.Browser.desktop" "_launch" "Alt+W,,"
+    ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "org.mozilla.firefox.desktop" "_k_friendly_name" "Mozilla Firefox"
+    ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "org.mozilla.firefox.desktop" "_launch" "Alt+W,,"
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "dev-emacsclient.desktop" "_k_friendly_name" "Editor"
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "dev-emacsclient.desktop" "_launch" "Alt+E,,"
-    ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "org.kde.kmail2.desktop" "_k_friendly_name" "Email"
-    ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "org.kde.kmail2.desktop" "_launch" "Alt+M,,"
+    ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "birdtray-show-thunderbird.desktop" "_k_friendly_name" "Email"
+    ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "birdtray-show-thunderbird.desktop" "_launch" "Alt+M,,"
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "net.lutris.Lutris.desktop" "_k_friendly_name" "Game Launcher"
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kglobalshortcutsrc" "net.lutris.Lutris.desktop" "_launch" "Alt+G,,"
     ./files/kde/write_keybinding_abs.py "$HOME/.config/kwinrc" "Plugins" "bismuthEnabled" "true"

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Birdtray
+Exec=bash -c "flatpak list | grep -q com.ulduzsoft.Birdtray && flatpak run com.ulduzsoft.Birdtray"
+Terminal=false
+Type=Application
+Icon=com.ulduzsoft.Birdtray
