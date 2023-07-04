@@ -57,8 +57,6 @@ system user_password=`read -p 'Sudo password: ' -s password && echo $password`:
 gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'"`:
     #!/bin/bash
     xdg-settings set default-web-browser com.brave.Browser.desktop
-    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "'gtk-launch dev-emacsclient.desktop'"
-    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command "'gtk-launch net.lutris.Lutris.desktop'"
     gsettings set org.gnome.shell favorite-apps "['com.brave.Browser.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop']"
     dconf write /org/gnome/terminal/legacy/profiles:/:{{ gnome_terminal_profile }}/use-system-font false
     dconf write /org/gnome/terminal/legacy/profiles:/:{{ gnome_terminal_profile }}/use-transparent-background true
@@ -105,12 +103,15 @@ gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.Profiles
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Launch terminal'
 
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Alt>e'
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "'gtk-launch dev-emacsclient.desktop'"
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Launch editor'
 
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Alt>m'
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command "'gtk-launch org.gnome.Evolution.desktop'"
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Launch mail client'
 
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Alt>g'
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command "'gtk-launch net.lutris.Lutris.desktop'"
     gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'Launch game launcher'
 
 
@@ -130,9 +131,18 @@ gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.Profiles
     gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-7 "['<Super><Shift>7']"
     gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-8 "['<Super><Shift>8']"
     gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-last "[]"
-    gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "['<Super>Tab']"
     gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Super>Tab']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "['<Super><Shift>Tab']"
     gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "[]"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Super>1']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-2 "['<Super>2']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-3 "['<Super>3']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4 "['<Super>4']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Super>5']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 "['<Super>6']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-7 "['<Super>7']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-8 "['<Super>8']"
+    gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>f']"
 
     gsettings set org.gnome.desktop.background picture-options 'zoom'
     gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/gnome/keys-l.webp'
