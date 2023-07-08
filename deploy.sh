@@ -25,6 +25,7 @@ elif [ "$1" = "extra" ]; then
     just -f $cwd/justfile dev-R
     just -f $cwd/justfile dev-latex
     just -f $cwd/justfile dev-rust
+    just -f $cwd/justfile dev-godot
 
 else
 

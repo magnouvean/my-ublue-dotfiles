@@ -61,6 +61,7 @@ system user_password=`read -p 'Sudo password: ' -s password && echo $password`:
 gnome-settings gnome_terminal_profile=`gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'"`:
     #!/bin/bash
     xdg-settings set default-web-browser org.mozilla.firefox.desktop
+    xdg-mime default dev-emacsclient.desktop text/plain
     gsettings set org.gnome.shell favorite-apps "['org.mozilla.firefox.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop']"
     dconf write /org/gnome/terminal/legacy/profiles:/:{{ gnome_terminal_profile }}/use-system-font false
     dconf write /org/gnome/terminal/legacy/profiles:/:{{ gnome_terminal_profile }}/use-transparent-background true
@@ -303,3 +304,7 @@ dev-rust:
     echo '[ -d ~/.cargo ] || curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y' | distrobox enter dev
     echo 'rustup component add clippy' | distrobox enter dev
     echo 'rustup component add rust-analyzer' | distrobox enter dev
+
+dev-godot:
+    #!/bin/bash
+    flatpak --user install org.godotengine.Godot
